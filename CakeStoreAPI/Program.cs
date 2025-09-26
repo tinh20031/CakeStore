@@ -1,4 +1,5 @@
-﻿using CakeStore.Business.Interfaces;
+﻿using CakeStore.Business.Configurations;
+using CakeStore.Business.Interfaces;
 
 using CakeStore.Business.Services;
 using CakeStore.Data.Interfaces;
@@ -75,13 +76,13 @@ builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
-builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();   
+builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 
 
 
-
-
+builder.Services.Configure<GmailSetting>(builder.Configuration.GetSection("Gmail"));
 
 // JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

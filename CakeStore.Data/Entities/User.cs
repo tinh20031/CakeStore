@@ -33,6 +33,9 @@ namespace CakeStoreAPI.Models
         public string? Image { get; set; }
         public string? RefreshToken { get; set; }
         public DateTimeOffset? RefreshTokenExpiryTime { get; set; }
+        public bool IsEmailVerified { get; set; } = false;
+        public string? EmailVerificationToken { get; set; }
+        public DateTimeOffset? EmailVerificationTokenExpiry { get; set; }
         public DateTimeOffset Created_At { get; set; } = DateTimeOffset.UtcNow;
         public DateTimeOffset Updated_At { get; set; } = DateTimeOffset.UtcNow;
         public virtual ICollection<Orders>? Orders { get; set; }

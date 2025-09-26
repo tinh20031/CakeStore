@@ -11,7 +11,7 @@ namespace CakeStore.Data.Interfaces
     public interface IOrderRepository
     {
         Task<IEnumerable<Orders>> GetAllOrders();
-        //Task<Orders> GetOrderById(int id);
+        Task<Orders> GetOrderById(int id);
         Task AddOrder(Orders orders);
         //void UpdateOrder(Orders orders);
         //void DeleteOrder(Orders orders);

@@ -15,5 +15,7 @@ namespace CakeStore.Business.Interfaces
         Task<UserDto> Login(LoginUserDto dto);
         Task<ChangePassDto> ChangePassword( int userid, ChangePassDto dto);
         Task<TokenResponseDto> RefreshToken(RefreshTokenRequestDto request);
+        Task<bool> VerifyTokenEmail (string email, string token );  
+        Task<bool> ResendVerificationEmail(string email);
     }
 }

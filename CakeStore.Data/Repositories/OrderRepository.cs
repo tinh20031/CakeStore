@@ -37,5 +37,9 @@ namespace CakeStore.Data.Repositories
         {
             return await _context.SaveChangesAsync() > 0;
         }
+        public async Task<Orders> GetOrderById(int id)
+        {
+            return await _context.Orders.Include(o => o.OrderDetails).ThenInclude(p => p.Product).FirstOrDefaultAsync(o => o.OrderId == id);
+        }
     }
 }

@@ -14,10 +14,12 @@ namespace CakeStore.API.Controllers
     {
 
         private readonly IAuthService _authService;
+        private readonly IEmailService _emailService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IEmailService emailService)
         {
             _authService = authService;
+            _emailService = emailService;
         }
 
         [HttpPost("Register")]
@@ -90,6 +92,38 @@ namespace CakeStore.API.Controllers
             if (updatedDto == null) return NotFound("User not found or incorrect current password.");
             return Ok(new { message = "Password changed successfully." });
         }
+
+        [HttpPost("VerifyEmail")]
+        public async Task<IActionResult> VerifyEmail([FromQuery] string email, [FromQuery] string token)
+        {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(token))
+            {
+                return BadRequest("Email and token are required.");
+            }
+            var isVerified = await _authService.VerifyTokenEmail(email, token);
+            if (!isVerified)
+            {
+                return BadRequest("Invalid email or token.");
+            }
+            return Ok(new { message = "Email verified successfully." });
+        }
+
+        [HttpPost("ResendVerificationEmail")]
+        public async Task<IActionResult> ResendVerificationEmail([FromQuery] string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return BadRequest("Email is required.");
+            }
+            var isSent = await _authService.ResendVerificationEmail(email);
+            if (!isSent)
+            {
+                return BadRequest("Failed to resend verification email. Please check the email address and try again.");
+            }
+            return Ok(new { message = "Verification email resent successfully." });
+        }
+
+
 
     }
 }

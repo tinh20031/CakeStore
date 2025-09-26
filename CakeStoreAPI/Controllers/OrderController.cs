@@ -2,6 +2,7 @@
 using CakeStore.Business.Interfaces;
 using CakeStore.Business.Services;
 using CakeStore.Data.Entities;
+using CakeStoreAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +59,26 @@ namespace CakeStore.API.Controllers
             {
                 var orders = await _orderService.GetAllOrders();
                 return Ok(orders);
+            }
+            else
+            {
+                return BadRequest("Access denied ");
+            }
+        }
+
+        [Authorize]
+        [HttpPut("put_status_order_admin/{orderId}")]
+        public async Task<IActionResult> PutStatusOrderByAdmin(int orderId, [FromQuery] status status)
+        {
+            if (User.IsInRole("Admin"))
+            {
+                var UserId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+                var result = await _orderService.PutStatusOrderForAD(UserId, orderId, status);
+               if (result == "Order not found")
+                {
+                    return NotFound(result);
+                }
+                return NoContent();
             }
             else
             {

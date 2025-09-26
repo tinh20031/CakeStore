@@ -19,15 +19,17 @@ namespace CakeStore.Business.Services
         private readonly ICartRepository _cartRepository;
         private readonly ICartItemRepository _cartItemRepository;
         private readonly IOrderDetailRepository _orderDetailRepository;
+        private readonly IUserRepository _userRepository;
 
-        public OrderService(IOrderRepository orderRepository, ICartRepository cartRepository, ICartItemRepository cartItemRepository, IOrderDetailRepository orderDetailRepository)
+        public OrderService(IOrderRepository orderRepository, ICartRepository cartRepository, ICartItemRepository cartItemRepository, IOrderDetailRepository orderDetailRepository, IUserRepository userRepository)
         {
             _orderRepository = orderRepository;
             _cartRepository = cartRepository;
             _cartItemRepository = cartItemRepository;
             _orderDetailRepository = orderDetailRepository;
+            _userRepository = userRepository;
         }
-        public async Task<IEnumerable<PreviewCartDto>> PreviewOrder(int[] CartItemId, int UserId  )
+        public async Task<IEnumerable<PreviewCartDto>> PreviewOrder(int[] CartItemId, int UserId)
         {
             var cart = await _cartRepository.GetCartByUserId(UserId);
             if (cart == null)
@@ -35,12 +37,12 @@ namespace CakeStore.Business.Services
                 throw new ArgumentException("Cart not found for the user");
             }
             var cartItemIds = _cartItemRepository.GetCartItemsByIds(CartItemId);
-            if(cartItemIds is null)
+            if (cartItemIds is null)
             {
                 throw new ArgumentException("invalid cartItem");
             }
-          
-            
+
+
 
             var orders = await _orderRepository.PreviewOrder();
             return orders.Select(o => new PreviewCartDto
@@ -57,7 +59,7 @@ namespace CakeStore.Business.Services
         }
 
 
-        public async Task<string> CreateOrder ( RequestOrderDto dto, int userId)
+        public async Task<string> CreateOrder(RequestOrderDto dto, int userId)
         {
             //check user 
             var cart = await _cartRepository.GetCartByUserId(userId);
@@ -66,10 +68,10 @@ namespace CakeStore.Business.Services
                 throw new ArgumentException("Cart not found for the user");
             }
             var cartitem = await _cartItemRepository.GetCartItemsByIds(dto.CartItemIds);
-          
-           foreach(var item in cartitem)
+
+            foreach (var item in cartitem)
             {
-                if(item.Product is null)
+                if (item.Product is null)
                 {
                     throw new Exception($"product not found in cartItemId({item.CartItemId})");
                 }
@@ -92,12 +94,12 @@ namespace CakeStore.Business.Services
                 TotalAmount = totalamount,
                 Status = status.Pending,
                 UserId = userId,
-                 OrderDetails = new List<OrderDetails>()
+                OrderDetails = new List<OrderDetails>()
 
             };
-           
 
-            
+
+
             foreach (var item in cartitem)
             {
                 addOrder.OrderDetails.Add(new OrderDetails
@@ -113,15 +115,15 @@ namespace CakeStore.Business.Services
                 if (item.Product.StockQuantity <= 0)
                     item.Product.Available = false;
 
-             
+
                 _cartItemRepository.DeleteCartItem(item);
 
             }
-           
+
 
             await _orderRepository.AddOrder(addOrder);
             await _orderRepository.SaveChangesAsync();
-        
+
             return ("you have order successfully");
 
         }
@@ -148,6 +150,38 @@ namespace CakeStore.Business.Services
                     Image = od.Product.ImageUrl
                 }).ToList()
             }).ToList();
+        }
+
+
+        public async Task<string> PutStatusOrderForAD(int userId, int orderId, status status)
+        {
+            var user = await _userRepository.GetUserById(userId);
+            if (user == null)
+            {
+                throw new UnauthorizedAccessException("Only admins can update order status");
+            }
+            var order = await _orderRepository.GetOrderById(orderId);
+            if (order == null)
+            {
+                throw new ArgumentException("Order not found");
+            }
+            var allowedTransitions = new Dictionary<status, List<status>>
+        {
+            { status.Pending, new List<status> { status.Confirmed, status.Cancelled } },
+            { status.Confirmed, new List<status> { status.Ready, status.Cancelled } },
+            { status.Ready, new List<status> { status.PickedUp } },
+            { status.PickedUp, new List<status>() },
+            { status.Cancelled, new List<status>() }};
+
+            if (!allowedTransitions[order.Status].Contains(status))
+            {
+                throw new InvalidOperationException(
+                    $"Cannot change status from {order.Status} to {status}");
+            }
+            order.Status = status;
+            order.Updated_At = DateTimeOffset.UtcNow;
+            await _orderRepository.SaveChangesAsync();
+            return "update status successfully";
         }
 
     }

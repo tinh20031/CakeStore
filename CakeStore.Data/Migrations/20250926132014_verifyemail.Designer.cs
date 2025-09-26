@@ -3,6 +3,7 @@ using System;
 using CakeStoreAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CakeStoreAPI.Migrations
 {
     [DbContext(typeof(CakeStoreDbContext))]
-    partial class CakeStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250926132014_verifyemail")]
+    partial class verifyemail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,26 +114,26 @@ namespace CakeStoreAPI.Migrations
                         new
                         {
                             CategoryId = 1,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4431), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8170), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Các loại bánh kem sinh nhật, tiệc cưới",
                             Name = "Bánh Kem",
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4435), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8173), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             CategoryId = 2,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4439), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8183), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Bánh ngọt, cupcake, tiramisu",
                             Name = "Bánh Ngọt",
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4439), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8184), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             CategoryId = 3,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4441), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8185), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Bánh mì tươi và sandwich",
                             Name = "Bánh Mì",
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4441), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8185), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 
@@ -303,78 +306,78 @@ namespace CakeStoreAPI.Migrations
                             ProductId = 1,
                             Available = true,
                             CategoryId = 1,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4921), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8472), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Bánh kem phủ socola hảo hạng",
                             ImageUrl = "banh-kem-socola.jpg",
                             Name = "Bánh Kem Socola",
                             Price = 250000m,
                             StockQuantity = 10,
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4921), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8473), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             ProductId = 2,
                             Available = true,
                             CategoryId = 1,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4930), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8480), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Bánh kem trang trí dâu tây tươi",
                             ImageUrl = "banh-kem-dau.jpg",
                             Name = "Bánh Kem Dâu Tây",
                             Price = 280000m,
                             StockQuantity = 8,
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4930), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8480), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             ProductId = 3,
                             Available = true,
                             CategoryId = 2,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4948), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8482), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Bánh tiramisu hương vị Ý",
                             ImageUrl = "tiramisu.jpg",
                             Name = "Bánh Tiramisu",
                             Price = 120000m,
                             StockQuantity = 15,
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4948), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8482), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             ProductId = 4,
                             Available = true,
                             CategoryId = 2,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4950), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8483), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Cupcake nhỏ gọn hương vani",
                             ImageUrl = "cupcake-vani.jpg",
                             Name = "Cupcake Vani",
                             Price = 35000m,
                             StockQuantity = 30,
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4950), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8484), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             ProductId = 5,
                             Available = true,
                             CategoryId = 3,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4952), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8485), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Bánh mì baguette giòn thơm",
                             ImageUrl = "baguette.jpg",
                             Name = "Bánh Mì Baguette",
                             Price = 20000m,
                             StockQuantity = 50,
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4952), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8485), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             ProductId = 6,
                             Available = true,
                             CategoryId = 3,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4954), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8487), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Bánh mì sandwich mềm xốp",
                             ImageUrl = "sandwich.jpg",
                             Name = "Bánh Mì Sandwich",
                             Price = 25000m,
                             StockQuantity = 40,
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(4954), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8487), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 
@@ -444,18 +447,18 @@ namespace CakeStoreAPI.Migrations
                         new
                         {
                             PromotionProductsId = 1,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(5056), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8562), new TimeSpan(0, 0, 0, 0, 0)),
                             ProductId = 1,
                             PromotionId = 1,
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(5057), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8562), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             PromotionProductsId = 2,
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(5058), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8565), new TimeSpan(0, 0, 0, 0, 0)),
                             ProductId = 2,
                             PromotionId = 1,
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(5059), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8565), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 
@@ -505,13 +508,13 @@ namespace CakeStoreAPI.Migrations
                         {
                             PromotionId = 1,
                             Code = "HE10",
-                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(5022), new TimeSpan(0, 0, 0, 0, 0)),
+                            Created_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8537), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Giảm 10% cho bánh kem",
                             DiscountPercentage = 10m,
                             EndDate = new DateOnly(2025, 10, 26),
                             Name = "Khuyến Mãi Hè",
                             StartDate = new DateOnly(2025, 9, 26),
-                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 40, 59, 526, DateTimeKind.Unspecified).AddTicks(5022), new TimeSpan(0, 0, 0, 0, 0))
+                            Updated_At = new DateTimeOffset(new DateTime(2025, 9, 26, 13, 20, 14, 101, DateTimeKind.Unspecified).AddTicks(8538), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 
@@ -576,20 +579,11 @@ namespace CakeStoreAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("EmailVerificationToken")
-                        .HasColumnType("text");
-
-                    b.Property<DateTimeOffset?>("EmailVerificationTokenExpiry")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("First_Name")
                         .HasColumnType("text");
 
                     b.Property<string>("Image")
                         .HasColumnType("text");
-
-                    b.Property<bool>("IsEmailVerified")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("Last_Name")
                         .HasColumnType("text");
